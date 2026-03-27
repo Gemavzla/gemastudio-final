@@ -348,3 +348,50 @@ section { padding: var(--spacing-lg) 0; }
   .marquee-track img { width: 160px; }
   .plan-modal-title { font-size: 1.4rem; }
 }
+
+.btn-outline-glow {
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-secondary);
+  border-radius: 999px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  margin-top: auto; 
+  width: 100%;
+}
+
+.btn-outline-glow:hover {
+  background: rgba(99, 198, 255, 0.1);
+  box-shadow: 0 0 15px rgba(99, 198, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+.pricing-card .btn-primary {
+  width: 100%;
+  margin-top: auto;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.plan-modal {
+  display: none !important;
+}
+
+.plan-modal.active {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+
+.close-plan-modal {
+  z-index: 10005; 
+}
