@@ -63,14 +63,16 @@ ul { list-style: none; }
 .btn-small { padding: 0.5rem 1.2rem; font-size: 0.75rem; }
 
 /* HERO */
-.hero-section { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero-parallax { position: absolute; inset: 0; background-image: url('https://i.postimg.cc/qBFTBQxC/Gemini-Generated-Image-aee3keaee3keaee3.png'); background-size: cover; background-position: center 38%; background-attachment: fixed; transform: scale(1.15); filter: saturate(0.95) brightness(0.4) contrast(1.1); }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 4, 6, 0.45) 0%, rgba(2, 4, 8, 0.74) 60%, rgba(3, 5, 7, 0.96) 100%); z-index: 1; }
-.hero-content { position: relative; z-index: 2; max-width: 900px; }
-.hero-subtitle { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 1.2rem; }
-.hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; line-height: 1.1; text-transform: uppercase; margin-bottom: 1.2rem; }
-.hero-description { max-width: 700px; margin: 0 auto 2.5rem; font-size: 1.05rem; color: var(--color-text-muted); }
-.hero-actions { display: flex; justify-content: center; gap: 1rem; }
+.hero-section { 
+  position: relative; 
+  height: 100vh;
+  min-height: 700px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  overflow: hidden;
+}
 
 section { padding: var(--spacing-lg) 0; }
 .section-header { margin-bottom: 3rem; }
@@ -87,10 +89,8 @@ section { padding: var(--spacing-lg) 0; }
   margin: 0 auto;
 }
 
-/* Las 2 primeras ocupan 3 columnas cada una (mitad y mitad) */
 .item-wide { grid-column: span 3; }
 
-/* Las 3 siguientes ocupan 2 columnas cada una (tercios) */
 .gallery-item:not(.item-wide) { grid-column: span 2; }
 
 .gallery-item { position: relative; overflow: hidden; border-radius: 12px; height: 320px; background: #0b1018; cursor: pointer; }
@@ -127,9 +127,6 @@ section { padding: var(--spacing-lg) 0; }
 .footer-logo { width: 120px; margin: 0 auto 1rem; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; margin-top: 2rem; color: var(--color-text-muted); font-size: 0.85rem; }
 
-/* =======================================
-   LIGHTBOX MODAL (CARRUSEL)
-======================================= */
 .lightbox-modal { display: none; position: fixed; inset: 0; z-index: 9999; justify-content: center; align-items: center; background: rgba(0,0,0,0.95); opacity: 0; transition: opacity 0.3s ease; }
 .lightbox-modal img { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: opacity 0.2s ease; }
 
@@ -144,7 +141,6 @@ section { padding: var(--spacing-lg) 0; }
 .contador-modal { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 1rem; letter-spacing: 2px; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 20px; }
 .cargando { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 1.2rem; display: none; }
 
-/* RESPONSIVE */
 @media (max-width: 992px) {
   .pricing-grid, .services-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
   .premium-card { transform: scale(1); }
