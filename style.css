@@ -73,7 +73,19 @@ ul { list-style: none; }
   text-align: center; 
   overflow: hidden;
 }
-.hero-parallax { position: absolute; inset: 0; background-image: url('https://i.postimg.cc/qBFTBQxC/Gemini-Generated-Image-aee3keaee3keaee3.png'); background-size: cover; background-position: center 38%; background-attachment: fixed; transform: scale(1.15); filter: saturate(0.95) brightness(0.4) contrast(1.1); }
+.hero-parallax { 
+  position: absolute; 
+  top: -5%;
+  left: -5%;
+  right: -5%;
+  bottom: -5%;
+  background-image: url('https://i.postimg.cc/qBFTBQxC/Gemini-Generated-Image-aee3keaee3keaee3.png'); 
+  background-size: cover; 
+  background-position: center center; 
+  background-attachment: fixed; 
+  filter: saturate(0.95) brightness(0.4) contrast(1.1); 
+  z-index: 0;
+}
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 4, 6, 0.45) 0%, rgba(2, 4, 8, 0.74) 60%, rgba(3, 5, 7, 0.96) 100%); z-index: 1; }
 .hero-content { position: relative; z-index: 2; max-width: 900px; }
 .hero-subtitle { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--color-secondary); margin-bottom: 1.2rem; }
