@@ -522,3 +522,123 @@ section { padding: var(--spacing-lg) 0; }
     grid-template-columns: 1fr;
   }
 }
+
+.site-footer {
+  position: relative;
+  background: #020406;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 4rem;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 150px;
+  background: radial-gradient(ellipse at bottom, rgba(29, 161, 255, 0.15) 0%, transparent 70%);
+  z-index: 0;
+  animation: footerBreath 4s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes footerBreath {
+  0% { opacity: 0.4; transform: translateX(-50%) scaleY(0.8); }
+  100% { opacity: 1; transform: translateX(-50%) scaleY(1.2); }
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  max-width: 450px;
+}
+
+.footer-logo {
+  width: 140px;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  color: var(--color-white);
+  opacity: 0.85;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-links h3 {
+  color: var(--color-white);
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links a {
+  color: var(--color-white);
+  opacity: 0.7;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--color-secondary);
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+  color: var(--color-white);
+  opacity: 0.6;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .footer-brand {
+    margin: 0 auto;
+  }
+  
+  .footer-logo {
+    margin: 0 auto 1.5rem auto;
+  }
+  
+  .footer-links ul {
+    align-items: center;
+  }
+  
+  .footer-links a:hover {
+    transform: translateY(-3px);
+  }
+}
