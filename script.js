@@ -1,36 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. FUNCIONALIDAD DE NAVEGACIÓN SUAVE (SMOOTH SCROLLING)
+    // NAVEGACIÓN SUAVE AL HACER CLIC EN EL MENÚ
     const enlacesMenu = document.querySelectorAll('nav ul li a[href^="#"]');
-    
     enlacesMenu.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
             e.preventDefault(); 
             const destino = document.querySelector(this.getAttribute('href'));
-            
             if(destino) {
                 window.scrollTo({
-                    top: destino.offsetTop - 70, // Compensa el tamaño del header
+                    top: destino.offsetTop - 65, 
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // 2. LIGHTBOX AVANZADO (CARRUSEL)
+    // CARRUSEL LIGHTBOX DE IMÁGENES
     const imagenesGaleria = document.querySelectorAll('.galeria-trigger');
-    let imagenesActuales = []; // Array temporal de las imágenes de la categoría clickeada
-    let indiceActual = 0; // Foto que se está mostrando
+    let imagenesActuales = []; 
+    let indiceActual = 0; 
     
-    // Crear el HTML del modal en tiempo real
+    // Crear el modal en HTML
     const modal = document.createElement('div');
     modal.classList.add('lightbox-modal');
     modal.innerHTML = `
         <span class="cerrar-modal">&times;</span>
         <span class="flecha-izq">&#10094;</span>
-        <img class="imagen-modal" src="" alt="Imagen ampliada">
+        <img class="imagen-modal" src="" alt="Imagen GemaStudio">
         <span class="flecha-der">&#10095;</span>
         <div class="contador-modal">1 / 1</div>
+        <div class="cargando">Cargando...</div>
     `;
     document.body.appendChild(modal);
     
@@ -39,16 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnIzq = modal.querySelector('.flecha-izq');
     const btnDer = modal.querySelector('.flecha-der');
     const contador = modal.querySelector('.contador-modal');
+    const textoCargando = modal.querySelector('.cargando');
     
-    // Función para mostrar una imagen específica
     function mostrarImagen(indice) {
-        imagenModal.style.opacity = '0'; // Efecto fade out
+        imagenModal.style.opacity = '0'; 
+        textoCargando.style.display = 'block';
         
-        setTimeout(() => {
+        // Precargar la imagen para que no parpadee
+        const imgPreload = new Image();
+        imgPreload.src = imagenesActuales[indice];
+        
+        imgPreload.onload = () => {
             imagenModal.src = imagenesActuales[indice];
             contador.textContent = `${indice + 1} / ${imagenesActuales.length}`;
+            textoCargando.style.display = 'none';
             
-            // Ocultar flechas si solo hay 1 foto
             if(imagenesActuales.length <= 1) {
                 btnIzq.style.display = 'none';
                 btnDer.style.display = 'none';
@@ -56,20 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 btnIzq.style.display = 'block';
                 btnDer.style.display = 'block';
             }
-            
-            imagenModal.style.opacity = '1'; // Efecto fade in
-        }, 150);
+            imagenModal.style.opacity = '1'; 
+        };
     }
     
-    // Abrir Modal
     imagenesGaleria.forEach(img => {
         img.addEventListener('click', () => {
-            // Obtener el array de imágenes separando por comas
             const urls = img.getAttribute('data-images');
             if(urls) {
                 imagenesActuales = urls.split(',');
-                indiceActual = 0; // Empezar por la primera
-                
+                indiceActual = 0; 
                 mostrarImagen(indiceActual);
                 modal.style.display = 'flex';
                 setTimeout(() => modal.style.opacity = '1', 10);
@@ -77,9 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     
-    // Navegación
     btnDer.addEventListener('click', (e) => {
-        e.stopPropagation(); // Evitar que cierre el modal
+        e.stopPropagation(); 
         indiceActual = (indiceActual + 1) % imagenesActuales.length;
         mostrarImagen(indiceActual);
     });
@@ -90,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarImagen(indiceActual);
     });
     
-    // Cerrar modal
     const cerrarPantalla = () => {
         modal.style.opacity = '0';
         setTimeout(() => modal.style.display = 'none', 300); 
@@ -101,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modal) cerrarPantalla();
     });
 
-    // Control con teclado (Flechas y Escape)
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'flex') {
             if (e.key === "Escape") cerrarPantalla();
