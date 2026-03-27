@@ -431,3 +431,40 @@ section { padding: var(--spacing-lg) 0; }
   
   .gallery-item { height: 280px; } /* Fotos un poco más pequeñas en celular */
 }
+/* =======================================
+   ESTILOS EXTRAS DEL CARRUSEL (LIGHTBOX)
+======================================= */
+.flecha-izq, .flecha-der {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 20px;
+  user-select: none;
+  transition: color var(--transition-fast);
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+.flecha-izq { left: 20px; }
+.flecha-der { right: 20px; }
+
+.flecha-izq:hover, .flecha-der:hover {
+  color: var(--color-secondary);
+  background: rgba(0,0,0,0.8);
+}
+
+.contador-modal {
+  position: absolute;
+  bottom: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.imagen-modal {
+  transition: opacity 0.2s ease-in-out;
+}
