@@ -1,0 +1,838 @@
+/* ==========================================================================
+   GemaStudio
+   Autor: Gabriel Millan
+/* --- IMPORTACIÓN DE FUENTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;800&display=swap');
+
+/* =========================================
+   1. VARIABLES GLOBALES (DISEÑO Y TEMAS)
+   ========================================= */
+:root {
+    /* Paleta de Colores: Tema Oscuro Elegante */
+    --color-bg-base: #0a0a0a;
+    --color-bg-surface: #141414;
+    --color-bg-card: rgba(25, 25, 25, 0.6);
+
+    /* Acentos (Cian y Esmeralda) */
+    --color-primary: #00f2fe;
+    --color-secondary: #4facfe;
+    --color-accent: #18bc9c;
+    --color-gold: #f39c12;
+
+    /* Textos */
+    --color-text-main: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-text-inverse: #000000;
+
+    /* Tipografías */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Espaciados y Layout */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+    --container-max: 1280px;
+
+    /* Efectos y Transiciones */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sombras y Filtros */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(0, 242, 254, 0.4);
+    --glass-blur: blur(16px);
+    --border-glass: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   2. RESETEO DE ESTILOS (NORMALIZATION)
+   ========================================= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-base);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   3. CLASES UTILITARIAS Y TIPOGRAFÍA
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-highlight {
+    color: var(--color-primary);
+}
+
+/* Texto con degradado espectacular */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* =========================================
+   4. ANIMACIONES (KEYFRAMES)
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    }
+}
+
+@keyframes scrollMouse {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+}
+
+@keyframes bgPan {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Clases de animación para aplicar en HTML */
+.fade-in-up {
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    /* Empieza oculto */
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
+
+/* =========================================
+   5. BOTONES AVANZADOS (UI COMPONENTS)
+   ========================================= */
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-bg-base);
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity var(--transition-smooth);
+}
+
+.btn-primary:hover::before {
+    opacity: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text-main);
+    border: 2px solid var(--color-text-muted);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+.btn-small {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   6. ENCABEZADO Y NAVEGACIÓN (GLASSMORPHISM)
+   ========================================= */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    transition: all var(--transition-smooth);
+}
+
+/* Efecto de cristal esmerilado para el menú */
+.glass-nav {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: var(--border-glass);
+}
+
+.brand-logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    color: var(--color-primary);
+    animation: pulseGlow 3s infinite;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-main);
+    position: relative;
+    padding-bottom: 5px;
+    transition: color var(--transition-fast);
+}
+
+/* Subrayado animado en los enlaces */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   7. SECCIÓN HERO (IMPACTO VISUAL)
+   ========================================= */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Imagen de fondo con Overlay CSS */
+    background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Efecto Parallax puro CSS */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.9) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Indicador animado de scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.scroll-indicator .mouse {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    margin-left: -3px;
+    animation: scrollMouse 2s infinite cubic-bezier(0.15, 0.41, 0.69, 0.94);
+}
+
+/* =========================================
+   8. TÍTULOS DE SECCIONES GENERALES
+   ========================================= */
+section {
+    padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+/* Subrayado decorativo para títulos */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 2px;
+}
+
+.section-desc {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   9. GALERÍA PORTAFOLIO (CSS GRID AVANZADO)
+   ========================================= */
+.portfolio-section {
+    background-color: var(--color-bg-base);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 350px;
+    gap: 1.5rem;
+}
+
+/* Hacer que un ítem ocupe 2 columnas (Masonry style) */
+.item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item figure {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+    filter: grayscale(80%) brightness(0.7);
+}
+
+/* Efecto Hover en Galería */
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(1);
+}
+
+/* Tarjeta de descripción con Glassmorphism flotante */
+.glass-caption {
+    position: absolute;
+    bottom: -100%;
+    /* Oculto por defecto */
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: bottom var(--transition-bounce);
+}
+
+.gallery-item:hover .glass-caption {
+    bottom: 0;
+    /* Aparece al hacer hover */
+}
+
+.glass-caption h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.glass-caption p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* =========================================
+   10. SECCIÓN PRECIOS (TARJETAS 3D FLOTANTES)
+   ========================================= */
+.pricing-section {
+    background: linear-gradient(to bottom, var(--color-bg-base), var(--color-bg-surface));
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    /* Permite que la tarjeta central sea más alta */
+    padding: 2rem 0;
+}
+
+.pricing-card {
+    background: var(--color-bg-card);
+    border: var(--border-glass);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all var(--transition-bounce);
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(0, 242, 254, 0.3);
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+/* Ícono que brilla constantemente para el plan premium */
+.glow-icon {
+    animation: pulseGlow 2s infinite alternate;
+    border-radius: 50%;
+}
+
+.pricing-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+}
+
+.pricing-features {
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.pricing-features li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Palomita de check (✓) generada con CSS puro */
+.pricing-features li::before {
+    content: '✓';
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+/* Tarjeta Premium Destacada */
+.premium-card {
+    background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(10, 30, 40, 0.9));
+    border: 1px solid var(--color-primary);
+    transform: scale(1.05);
+    /* Ligeramente más grande */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.05);
+}
+
+.premium-card:hover {
+    transform: scale(1.05) translateY(-15px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: #000;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   11. PIE DE PÁGINA (FOOTER MODERN)
+   ========================================= */
+.site-footer {
+    background-color: #050505;
+    padding: 4rem 0 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-brand h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    color: var(--color-text-muted);
+}
+
+.footer-links h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+.footer-links ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--color-text-muted);
+    transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--color-text-main);
+    padding-left: 5px;
+    /* Efecto de desplazamiento al hacer hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #000;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   12. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================= */
+
+/* Tablets y Pantallas Medianas */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .item-large {
+        grid-column: span 1;
+        /* Desactiva el tamaño doble en pantallas pequeñas */
+        grid-row: span 1;
+    }
+
+    .pricing-grid {
+        align-items: stretch;
+    }
+
+    .premium-card {
+        transform: scale(1);
+    }
+
+    .premium-card:hover {
+        transform: translateY(-10px);
+    }
+}
+
+/* Teléfonos y Pantallas Pequeñas */
+@media (max-width: 768px) {
+    .main-nav ul {
+        display: none;
+        /* Aquí podrías añadir un menú hamburguesa con JS */
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+        grid-auto-rows: 300px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* =========================================
+   ESTILOS DEL LIGHTBOX MODAL (JAVASCRIPT)
+========================================= */
+.lightbox-modal {
+    display: none;
+    /* Oculto por defecto, se activa con JS */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Fondo oscuro semitransparente */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    transform: scale(0.95);
+    animation: zoomIn 0.3s forwards;
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 10000;
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: #00f2fe;
+    /* Color de acento al hacer hover */
+    text-decoration: none;
+}
+
+/* Animación sutil para la imagen al abrirse */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Efecto hover extra para las imágenes de la galería */
+#portafolio img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#portafolio img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+        < !-- FOOTER: Pie de página con derechos de autor -- > <footer > <p > &copy;
+        2026 GemaStudio por Gabriel Millan. Todos los derechos reservados.</p > </footer > < !-- Vinculamos el archivo JavaScript -- > <script src="script.js" > </script > </body > </html >
