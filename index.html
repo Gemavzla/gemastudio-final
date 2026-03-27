@@ -4,25 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GemaStudio | Fotografía y Dirección Visual</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header class="site-header glass-nav">
     <div class="container header-wrap">
-      <a href="#inicio" class="brand-logo" aria-label="Ir al inicio de GemaStudio">
-        <img
-          src="https://i.postimg.cc/3RHkqYdQ/BLanco-Gema-Studio.png"
-          alt="Logo GemaStudio"
-          class="brand-logo-img"
-        />
+      <a href="#inicio" class="brand-logo" aria-label="Ir al inicio">
+        <img src="https://i.postimg.cc/3RHkqYdQ/BLanco-Gema-Studio.png" alt="Logo GemaStudio" class="brand-logo-img" />
       </a>
-
       <nav class="main-nav" aria-label="Navegación principal">
         <ul>
           <li><a href="#inicio" class="nav-link">Inicio</a></li>
@@ -40,105 +33,113 @@
     <section id="inicio" class="hero-section">
       <div class="hero-parallax"></div>
       <div class="hero-overlay"></div>
-
       <div class="container hero-content">
         <p class="hero-subtitle fade-in-up">Fotografía · Dirección visual · Identidad</p>
-
-        <h1 class="hero-title fade-in-up delay-1">
-          Capturo imágenes con <span class="text-gradient">impacto real</span>
-        </h1>
-
+        <h1 class="hero-title fade-in-up delay-1">Capturo imágenes con <span class="text-gradient">impacto real</span></h1>
         <p class="hero-description fade-in-up delay-2">
-          GemaStudio es mi espacio creativo para desarrollar fotografía de paisajes, eventos, retratos e inmobiliaria
-          con una estética limpia, cinematográfica y profesional.
+          GemaStudio es mi espacio creativo para desarrollar fotografía de paisajes, eventos, retratos e inmobiliaria con una estética limpia, cinematográfica y profesional.
         </p>
-
         <div class="hero-actions fade-in-up delay-3">
           <a href="#portafolio" class="btn-primary">Ver trabajos</a>
           <a href="#contacto" class="btn-secondary">Trabajemos juntos</a>
         </div>
       </div>
-
-      <div class="scroll-indicator" aria-hidden="true">
-        <span class="mouse"></span>
-      </div>
+      <div class="scroll-indicator" aria-hidden="true"><span class="mouse"></span></div>
     </section>
 
-    <!-- PORTAFOLIO (IMÁGENES AJUSTADAS Y RECORTADAS) -->
+    <!-- PORTAFOLIO CON CARRUSEL DE IMÁGENES -->
     <section id="portafolio" class="portfolio-section">
       <div class="container">
         <div class="section-header text-center">
           <p class="section-kicker">Portafolio</p>
           <h2 class="section-title">Mis <span class="text-highlight">trabajos</span></h2>
-          <p class="section-desc">
-            Una selección de proyectos fotográficos enfocados en narrativa visual, atmósfera y detalle.
-          </p>
+          <p class="section-desc">Selecciona una categoría para ver la galería completa.</p>
         </div>
 
         <div class="gallery-grid">
-          <article class="gallery-item">
+          
+          <!-- 1. PAISAJES -->
+          <article class="gallery-item item-wide">
             <figure>
-              <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Fotografía de paisajes">
+              <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Paisajes" class="galeria-trigger"
+                   data-images="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg,https://i.postimg.cc/KzrCPrdV/IMG-1146.jpg,https://i.postimg.cc/B6cRTcr6/IMG-1188.jpg,https://i.postimg.cc/nzYN4YyV/IMG-1235.jpg,https://i.postimg.cc/nzYN4YyM/IMG-1260.jpg,https://i.postimg.cc/QtkvQk2C/IMG-1289.jpg,https://i.postimg.cc/B6cRTcrj/IMG-1294.jpg">
               <figcaption class="glass-caption">
                 <h3>Paisajes</h3>
-                <p>Composición, atmósfera y luz natural para escenas memorables.</p>
+                <p>Composición, atmósfera y luz natural.</p>
               </figcaption>
             </figure>
           </article>
 
-          <article class="gallery-item">
+          <!-- 2. BAUTIZOS -->
+          <article class="gallery-item item-wide">
             <figure>
-              <img src="https://i.postimg.cc/Wpx1YsC1/IMG-2638.jpg" alt="Fotografía de eventos sociales">
+              <img src="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg" alt="Bautizos" class="galeria-trigger"
+                   data-images="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg,https://i.postimg.cc/KYT6zyQJ/IMG-2623.jpg,https://i.postimg.cc/xdmwCSgg/IMG-2624.jpg,https://i.postimg.cc/CK831VJN/IMG-2688.jpg,https://i.postimg.cc/HLMqxC36/IMG-2698.jpg,https://i.postimg.cc/RFzjJbb7/IMG-2718.jpg,https://i.postimg.cc/ydzw3rrT/IMG-2721.jpg">
               <figcaption class="glass-caption">
-                <h3>Eventos Sociales</h3>
-                <p>Cobertura dinámica para momentos auténticos y espontáneos.</p>
+                <h3>Bautizos</h3>
+                <p>Cobertura emotiva y espontánea para momentos únicos.</p>
               </figcaption>
             </figure>
           </article>
 
+          <!-- 3. INMOBILIARIA -->
           <article class="gallery-item">
             <figure>
-              <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Fotografía inmobiliaria">
+              <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria" class="galeria-trigger"
+                   data-images="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg,https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg,https://i.postimg.cc/76fT7mGf/IMG-6231-HDR.jpg,https://i.postimg.cc/rmKtWQ0r/IMG-6273-HDR.jpg,https://i.postimg.cc/3RdDpn4X/IMG-6305-HDR.jpg,https://i.postimg.cc/8cvJXcbv/IMG-6279-HDR.jpg">
               <figcaption class="glass-caption">
                 <h3>Inmobiliaria</h3>
-                <p>Espacios bien iluminados, perspectiva limpia y presentación comercial.</p>
+                <p>Espacios y perspectiva limpia.</p>
               </figcaption>
             </figure>
           </article>
 
+          <!-- 4. RETRATOS -->
           <article class="gallery-item">
             <figure>
-              <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Fotografía de retratos">
+              <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Retratos" class="galeria-trigger"
+                   data-images="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg,https://i.postimg.cc/0j9RFHYD/IMG-5133.jpg,https://i.postimg.cc/D05kTd6Y/IMG-4577-(1).jpg,https://i.postimg.cc/yxn4HXn4/IMG-4592.jpg,https://i.postimg.cc/x8gD2y5h/IMG-4602.jpg,https://i.postimg.cc/gj4FWq49/IMG-4603.jpg,https://i.postimg.cc/cCTySMTG/IMG-5109.jpg,https://i.postimg.cc/fy5nNj5N/IMG-5111.jpg,https://i.postimg.cc/CM4VkS0z/IMG-5116.jpg">
               <figcaption class="glass-caption">
                 <h3>Retratos</h3>
-                <p>Expresión, personalidad y dirección visual en cada toma.</p>
+                <p>Expresión y personalidad.</p>
               </figcaption>
             </figure>
           </article>
+
+          <!-- 5. BODAS -->
+          <article class="gallery-item">
+            <figure>
+              <img src="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg" alt="Bodas" class="galeria-trigger"
+                   data-images="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg,https://i.postimg.cc/SspwYttD/IMG-0080.jpg,https://i.postimg.cc/NMwW2PPP/IMG-0087.jpg,https://i.postimg.cc/sXRtG00H/IMG-0125.jpg,https://i.postimg.cc/gJPfLBB7/IMG-0145.jpg,https://i.postimg.cc/FRQ2knB5/IMG-0300.jpg,https://i.postimg.cc/TwXZ5H4X/IMG-0608.jpg">
+              <figcaption class="glass-caption">
+                <h3>Bodas</h3>
+                <p>El día más importante, documentado a la perfección.</p>
+              </figcaption>
+            </figure>
+          </article>
+
         </div>
       </div>
     </section>
 
+    <!-- SERVICIOS -->
     <section id="servicios" class="services-section">
       <div class="container">
         <div class="section-header text-center">
           <p class="section-kicker">Servicios</p>
           <h2 class="section-title">Lo que puedo <span class="text-highlight">crear</span></h2>
         </div>
-
         <div class="services-grid">
           <article class="service-card">
             <div class="service-number">01</div>
             <h3>Sesiones fotográficas</h3>
             <p>Retratos, editoriales, contenido para marcas personales y sesiones conceptuales.</p>
           </article>
-
           <article class="service-card">
             <div class="service-number">02</div>
-            <h3>Eventos</h3>
+            <h3>Eventos y Bodas</h3>
             <p>Cobertura visual de eventos sociales, culturales o corporativos con enfoque documental.</p>
           </article>
-
           <article class="service-card">
             <div class="service-number">03</div>
             <h3>Fotografía comercial</h3>
@@ -148,16 +149,14 @@
       </div>
     </section>
 
-    <!-- SECCIÓN DE PRECIOS AÑADIDA NUEVAMENTE -->
+    <!-- PRECIOS -->
     <section id="planes" class="pricing-section">
       <div class="container">
         <div class="section-header text-center">
           <p class="section-kicker">Inversión</p>
           <h2 class="section-title">Planes y <span class="text-highlight">Precios</span></h2>
         </div>
-
         <div class="pricing-grid">
-          <!-- Plan Básico -->
           <article class="pricing-card">
             <h3>Sesión Básica</h3>
             <p class="price">$150</p>
@@ -169,8 +168,6 @@
             </ul>
             <a href="#contacto" class="btn-secondary btn-small">Seleccionar</a>
           </article>
-
-          <!-- Plan Premium -->
           <article class="pricing-card premium-card">
             <div class="popular-badge">Más Solicitado</div>
             <h3>Paquete Premium</h3>
@@ -183,15 +180,13 @@
             </ul>
             <a href="#contacto" class="btn-primary btn-small">Agendar Premium</a>
           </article>
-
-          <!-- Eventos -->
           <article class="pricing-card">
-            <h3>Eventos</h3>
+            <h3>Eventos/Bodas</h3>
             <p class="price">A medida</p>
             <ul class="pricing-features">
               <li>Cobertura documental</li>
               <li>Eventos corporativos</li>
-              <li>Eventos sociales</li>
+              <li>Bautizos y Bodas</li>
               <li>Entrega express</li>
             </ul>
             <a href="#contacto" class="btn-secondary btn-small">Cotizar Evento</a>
@@ -200,28 +195,22 @@
       </div>
     </section>
 
+    <!-- CONTACTO -->
     <section id="contacto" class="contact-section">
       <div class="container">
         <div class="section-header text-center">
           <p class="section-kicker">Contacto</p>
           <h2 class="section-title">Conecta con <span class="text-highlight">GemaStudio</span></h2>
-          <p class="section-desc">Puedes ver más de mi trabajo o escribirme a través de estas plataformas.</p>
         </div>
-
         <div class="contact-grid">
           <a class="contact-card" href="https://www.instagram.com/gabrielem.photo/" target="_blank">
-            <span class="contact-label">Instagram</span>
-            <strong>@gabrielem.photo</strong>
+            <span class="contact-label">Instagram</span><strong>@gabrielem.photo</strong>
           </a>
-
           <a class="contact-card" href="https://www.behance.net/gallery/202886571/PORTAFOLIO-GEMA-2024" target="_blank">
-            <span class="contact-label">Behance</span>
-            <strong>Portafolio GEMA 2024</strong>
+            <span class="contact-label">Behance</span><strong>Portafolio GEMA 2024</strong>
           </a>
-
           <div class="contact-card">
-            <span class="contact-label">Correo</span>
-            <strong>contacto@gemastudio.com</strong>
+            <span class="contact-label">Correo</span><strong>contacto@gemastudio.com</strong>
           </div>
         </div>
       </div>
@@ -231,26 +220,10 @@
   <footer class="site-footer">
     <div class="container footer-content">
       <div class="footer-brand">
-        <img
-          src="https://i.postimg.cc/3RHkqYdQ/BLanco-Gema-Studio.png"
-          alt="Logo GemaStudio en footer"
-          class="footer-logo"
-        />
+        <img src="https://i.postimg.cc/3RHkqYdQ/BLanco-Gema-Studio.png" alt="Logo" class="footer-logo" />
         <p>Fotografía y dirección visual con una estética moderna, limpia y profesional.</p>
       </div>
-
-      <div class="footer-links">
-        <h3>Enlaces</h3>
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#portafolio">Portafolio</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#planes">Planes</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
     </div>
-
     <div class="footer-bottom">
       <p>&copy; 2026 GemaStudio por Gabriel Millan. Todos los derechos reservados.</p>
     </div>
