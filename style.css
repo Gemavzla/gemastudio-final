@@ -1,838 +1,772 @@
-/* ==========================================================================
-   GemaStudio
-   Autor: Gabriel Millan
-/* --- IMPORTACIÓN DE FUENTES --- */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
-/* =========================================
-   1. VARIABLES GLOBALES (DISEÑO Y TEMAS)
-   ========================================= */
 :root {
-    /* Paleta de Colores: Tema Oscuro Elegante */
-    --color-bg-base: #0a0a0a;
-    --color-bg-surface: #141414;
-    --color-bg-card: rgba(25, 25, 25, 0.6);
+  --color-bg-base: #030507;
+  --color-bg-surface: #0a0f17;
+  --color-bg-card: rgba(13, 20, 31, 0.72);
 
-    /* Acentos (Cian y Esmeralda) */
-    --color-primary: #00f2fe;
-    --color-secondary: #4facfe;
-    --color-accent: #18bc9c;
-    --color-gold: #f39c12;
+  --color-primary: #1da1ff;
+  --color-secondary: #63c6ff;
+  --color-accent: #0b6dff;
+  --color-white: #ffffff;
+  --color-text-main: #f5f8ff;
+  --color-text-muted: #9fb1c7;
+  --color-border: rgba(255, 255, 255, 0.08);
 
-    /* Textos */
-    --color-text-main: #f4f4f5;
-    --color-text-muted: #a1a1aa;
-    --color-text-inverse: #000000;
+  --font-main: 'Montserrat', sans-serif;
 
-    /* Tipografías */
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Montserrat', sans-serif;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 7rem;
+  --container-max: 1280px;
 
-    /* Espaciados y Layout */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 4rem;
-    --spacing-xl: 8rem;
-    --container-max: 1280px;
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.35);
+  --shadow-blue: 0 0 25px rgba(29, 161, 255, 0.25);
 
-    /* Efectos y Transiciones */
-    --transition-fast: 0.2s ease-in-out;
-    --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    /* Sombras y Filtros */
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 20px rgba(0, 242, 254, 0.4);
-    --glass-blur: blur(16px);
-    --border-glass: 1px solid rgba(255, 255, 255, 0.05);
+  --transition-fast: 0.25s ease;
+  --transition-smooth: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* =========================================
-   2. RESETEO DE ESTILOS (NORMALIZATION)
-   ========================================= */
+/* Reset */
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
-    font-family: var(--font-body);
-    background-color: var(--color-bg-base);
-    color: var(--color-text-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+  font-family: var(--font-main);
+  background:
+    radial-gradient(circle at top, rgba(29, 161, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, #020406 0%, #050912 45%, #04070d 100%);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
-/* =========================================
-   3. CLASES UTILITARIAS Y TIPOGRAFÍA
-   ========================================= */
 .container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.2rem;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-highlight {
-    color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
-/* Texto con degradado espectacular */
 .text-gradient {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    display: inline-block;
+  background: linear-gradient(135deg, var(--color-white), var(--color-secondary), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
-/* =========================================
-   4. ANIMACIONES (KEYFRAMES)
-   ========================================= */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
+.fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-    }
-
-    50% {
-        box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
-    }
-
-    100% {
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-    }
+  0% {
+    box-shadow: 0 0 0 rgba(29, 161, 255, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(29, 161, 255, 0.28);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(29, 161, 255, 0.12);
+  }
 }
 
 @keyframes scrollMouse {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(15px);
-        opacity: 0;
-    }
-}
-
-@keyframes bgPan {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Clases de animación para aplicar en HTML */
-.fade-in-up {
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    /* Empieza oculto */
-}
-
-.delay-1 {
-    animation-delay: 0.2s;
-}
-
-.delay-2 {
-    animation-delay: 0.4s;
-}
-
-.delay-3 {
-    animation-delay: 0.6s;
-}
-
-/* =========================================
-   5. BOTONES AVANZADOS (UI COMPONENTS)
-   ========================================= */
-.btn-primary,
-.btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2.5rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    transition: var(--transition-smooth);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.btn-primary {
-    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-    color: var(--color-bg-base);
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
-}
-
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
-    opacity: 0;
-    z-index: -1;
-    transition: opacity var(--transition-smooth);
-}
-
-.btn-primary:hover::before {
+  0% {
+    transform: translateY(0);
     opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.5);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--color-text-main);
-    border: 2px solid var(--color-text-muted);
-}
-
-.btn-secondary:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    transform: translateY(-3px);
-}
-
-.btn-small {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.8rem;
-}
-
-/* =========================================
-   6. ENCABEZADO Y NAVEGACIÓN (GLASSMORPHISM)
-   ========================================= */
+/* Header */
 .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-    transition: all var(--transition-smooth);
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  background: rgba(3, 5, 7, 0.52);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Efecto de cristal esmerilado para el menú */
-.glass-nav {
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border-bottom: var(--border-glass);
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .brand-logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: inline-flex;
+  align-items: center;
 }
 
-.logo-icon {
-    color: var(--color-primary);
-    animation: pulseGlow 3s infinite;
+.brand-logo-img {
+  width: 170px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .main-nav ul {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .nav-link {
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-main);
-    position: relative;
-    padding-bottom: 5px;
-    transition: color var(--transition-fast);
+  position: relative;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text-main);
+  transition: color var(--transition-fast);
 }
 
-/* Subrayado animado en los enlaces */
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--color-primary);
-    transition: width var(--transition-smooth);
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.45rem;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  transition: width var(--transition-smooth);
 }
 
 .nav-link:hover {
-    color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .nav-link:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
-/* =========================================
-   7. SECCIÓN HERO (IMPACTO VISUAL)
-   ========================================= */
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.95rem 2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  color: #031018;
+  box-shadow: var(--shadow-blue);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(99, 198, 255, 0.4);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.btn-small {
+  padding: 0.7rem 1.25rem;
+  font-size: 0.78rem;
+}
+
+/* Hero */
 .hero-section {
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* Imagen de fondo con Overlay CSS */
-    background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    /* Efecto Parallax puro CSS */
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 8rem 0 5rem;
+}
+
+.hero-parallax {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.postimg.cc/qBFTBQxC/Gemini-Generated-Image-aee3keaee3keaee3.png');
+  background-size: 125%;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transform: scale(1.08);
+  filter: saturate(0.95) brightness(0.45) contrast(1.08);
 }
 
 .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.9) 100%);
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(2, 4, 6, 0.45) 0%, rgba(2, 4, 8, 0.74) 60%, rgba(3, 5, 7, 0.96) 100%),
+    radial-gradient(circle at center, rgba(17, 84, 145, 0.18) 0%, rgba(0, 0, 0, 0) 45%);
+  z-index: 1;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
 }
 
 .hero-subtitle {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 1.2rem;
 }
 
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.4rem;
+  text-transform: uppercase;
 }
 
 .hero-description {
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
-    max-width: 600px;
-    margin: 0 auto 3rem;
+  max-width: 760px;
+  margin: 0 auto 2.4rem;
+  font-size: 1.08rem;
+  color: var(--color-text-muted);
 }
 
 .hero-actions {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* Indicador animado de scroll */
 .scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    z-index: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  z-index: 2;
 }
 
 .scroll-indicator .mouse {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: var(--color-primary);
-    border-radius: 50%;
-    margin-left: -3px;
-    animation: scrollMouse 2s infinite cubic-bezier(0.15, 0.41, 0.69, 0.94);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  animation: scrollMouse 2s infinite;
 }
 
-/* =========================================
-   8. TÍTULOS DE SECCIONES GENERALES
-   ========================================= */
+/* Sections */
 section {
-    padding: var(--spacing-xl) 0;
+  padding: var(--spacing-xl) 0;
 }
 
 .section-header {
-    margin-bottom: var(--spacing-lg);
+  margin-bottom: 3.2rem;
+}
+
+.section-kicker {
+  margin-bottom: 0.8rem;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .section-title {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
+  display: inline-block;
+  position: relative;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
-/* Subrayado decorativo para títulos */
 .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--color-primary);
-    border-radius: 2px;
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.7rem;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+.left-title::after {
+  left: 0;
+  transform: none;
 }
 
 .section-desc {
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--color-text-muted);
+  font-size: 1rem;
 }
 
-/* =========================================
-   9. GALERÍA PORTAFOLIO (CSS GRID AVANZADO)
-   ========================================= */
+/* Portfolio */
 .portfolio-section {
-    background-color: var(--color-bg-base);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-auto-rows: 350px;
-    gap: 1.5rem;
-}
-
-/* Hacer que un ítem ocupe 2 columnas (Masonry style) */
-.item-large {
-    grid-column: span 2;
-    grid-row: span 2;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.2rem;
 }
 
 .gallery-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  min-height: 320px;
+  background: #0b1018;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-soft);
+}
+
+.gallery-item:nth-child(1) {
+  grid-column: span 7;
+  min-height: 620px;
+}
+
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(3),
+.gallery-item:nth-child(4) {
+  grid-column: span 5;
+  min-height: 198px;
+}
+
+.gallery-item figure,
+.gallery-item img {
+  width: 100%;
+  height: 100%;
 }
 
 .gallery-item figure {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+  position: relative;
 }
 
 .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
-    filter: grayscale(80%) brightness(0.7);
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.5s ease;
+  filter: brightness(0.72) saturate(0.95);
 }
 
-/* Efecto Hover en Galería */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(2, 4, 8, 0.88) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .gallery-item:hover img {
-    transform: scale(1.1);
-    filter: grayscale(0%) brightness(1);
+  transform: scale(1.08);
+  filter: brightness(0.95) saturate(1.05);
 }
 
-/* Tarjeta de descripción con Glassmorphism flotante */
 .glass-caption {
-    position: absolute;
-    bottom: -100%;
-    /* Oculto por defecto */
-    left: 0;
-    width: 100%;
-    padding: 1.5rem;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    transition: bottom var(--transition-bounce);
-}
-
-.gallery-item:hover .glass-caption {
-    bottom: 0;
-    /* Aparece al hacer hover */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 1.5rem;
 }
 
 .glass-caption h3 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
 }
 
 .glass-caption p {
-    font-size: 0.9rem;
-    color: #ccc;
+  color: #d9e8f5;
+  font-size: 0.95rem;
 }
 
-/* =========================================
-   10. SECCIÓN PRECIOS (TARJETAS 3D FLOTANTES)
-   ========================================= */
-.pricing-section {
-    background: linear-gradient(to bottom, var(--color-bg-base), var(--color-bg-surface));
+/* Services */
+.services-section {
+  background: linear-gradient(180deg, rgba(8,12,18,0.8), rgba(5,8,12,0.95));
 }
 
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    align-items: center;
-    /* Permite que la tarjeta central sea más alta */
-    padding: 2rem 0;
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
 }
 
-.pricing-card {
-    background: var(--color-bg-card);
-    border: var(--border-glass);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    text-align: center;
-    transition: all var(--transition-bounce);
-    position: relative;
+.service-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
-.pricing-card:hover {
-    transform: translateY(-15px);
-    box-shadow: var(--shadow-soft);
-    border-color: rgba(0, 242, 254, 0.3);
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 198, 255, 0.28);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35), 0 0 20px rgba(29,161,255,0.12);
 }
 
-.card-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
+.service-number {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  color: #031018;
+  font-weight: 800;
 }
 
-/* Ícono que brilla constantemente para el plan premium */
-.glow-icon {
-    animation: pulseGlow 2s infinite alternate;
-    border-radius: 50%;
+.service-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
 }
 
-.pricing-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+.service-card p {
+  color: var(--color-text-muted);
 }
 
-.price {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--color-primary);
-    margin-bottom: 2rem;
+/* Highlight band */
+.highlight-band {
+  padding: 5rem 0;
+  background:
+    linear-gradient(135deg, rgba(8, 18, 31, 0.94), rgba(6, 10, 15, 0.98)),
+    radial-gradient(circle at right, rgba(29, 161, 255, 0.12), transparent 30%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.pricing-features {
-    text-align: left;
-    margin-bottom: 2.5rem;
+.highlight-wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 2rem;
 }
 
-.pricing-features li {
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--color-text-muted);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.highlight-text {
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
 }
 
-/* Palomita de check (✓) generada con CSS puro */
-.pricing-features li::before {
-    content: '✓';
-    color: var(--color-accent);
-    font-weight: bold;
+/* Contact */
+.contact-section {
+  background: linear-gradient(180deg, rgba(4,7,13,1), rgba(2,4,7,1));
 }
 
-/* Tarjeta Premium Destacada */
-.premium-card {
-    background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(10, 30, 40, 0.9));
-    border: 1px solid var(--color-primary);
-    transform: scale(1.05);
-    /* Ligeramente más grande */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.05);
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.3rem;
 }
 
-.premium-card:hover {
-    transform: scale(1.05) translateY(-15px);
+.contact-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  padding: 1.6rem;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft);
 }
 
-.popular-badge {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-    color: #000;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.contact-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(99, 198, 255, 0.3);
 }
 
-/* =========================================
-   11. PIE DE PÁGINA (FOOTER MODERN)
-   ========================================= */
+.contact-label {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-card strong {
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+/* Footer */
 .site-footer {
-    background-color: #050505;
-    padding: 4rem 0 0 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: #020406;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 4rem;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
 }
 
-.footer-brand h2 {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.footer-brand {
+  max-width: 520px;
 }
 
-.footer-brand p {
-    color: var(--color-text-muted);
+.footer-logo {
+  width: 180px;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p,
+.footer-links a {
+  color: var(--color-text-muted);
 }
 
 .footer-links h3 {
-    font-family: var(--font-heading);
-    margin-bottom: 1.5rem;
-    color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.footer-links ul li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-links a {
-    color: var(--color-text-muted);
-    transition: var(--transition-fast);
+.footer-links li + li {
+  margin-top: 0.7rem;
 }
 
 .footer-links a:hover {
-    color: var(--color-text-main);
-    padding-left: 5px;
-    /* Efecto de desplazamiento al hacer hover */
+  color: var(--color-secondary);
 }
 
 .footer-bottom {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: #000;
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.2rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
 }
 
-/* =========================================
-   12. RESPONSIVE DESIGN (MEDIA QUERIES)
-   ========================================= */
-
-/* Tablets y Pantallas Medianas */
-@media (max-width: 992px) {
-    .hero-title {
-        font-size: 4rem;
-    }
-
-    .item-large {
-        grid-column: span 1;
-        /* Desactiva el tamaño doble en pantallas pequeñas */
-        grid-row: span 1;
-    }
-
-    .pricing-grid {
-        align-items: stretch;
-    }
-
-    .premium-card {
-        transform: scale(1);
-    }
-
-    .premium-card:hover {
-        transform: translateY(-10px);
-    }
-}
-
-/* Teléfonos y Pantallas Pequeñas */
-@media (max-width: 768px) {
-    .main-nav ul {
-        display: none;
-        /* Aquí podrías añadir un menú hamburguesa con JS */
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
-    }
-
-    .hero-description {
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        /* Una sola columna en móvil */
-        grid-auto-rows: 300px;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-/* =========================================
-   ESTILOS DEL LIGHTBOX MODAL (JAVASCRIPT)
-========================================= */
+/* Lightbox */
 .lightbox-modal {
-    display: none;
-    /* Oculto por defecto, se activa con JS */
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    /* Fondo oscuro semitransparente */
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .lightbox-modal img {
-    max-width: 90%;
-    max-height: 90vh;
-    border-radius: 8px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-    transform: scale(0.95);
-    animation: zoomIn 0.3s forwards;
+  max-width: 92%;
+  max-height: 90vh;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  animation: zoomIn 0.3s ease forwards;
 }
 
 .cerrar-modal {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    z-index: 10000;
+  position: absolute;
+  top: 18px;
+  right: 30px;
+  color: #fff;
+  font-size: 42px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.cerrar-modal:hover,
-.cerrar-modal:focus {
-    color: #00f2fe;
-    /* Color de acento al hacer hover */
-    text-decoration: none;
+.cerrar-modal:hover {
+  color: var(--color-secondary);
 }
 
-/* Animación sutil para la imagen al abrirse */
 @keyframes zoomIn {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Efecto hover extra para las imágenes de la galería */
-#portafolio img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Responsive */
+@media (max-width: 1100px) {
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(3),
+  .gallery-item:nth-child(4) {
+    grid-column: span 6;
+    min-height: 280px;
+  }
+
+  .services-grid,
+  .contact-grid,
+  .highlight-wrap {
+    grid-template-columns: 1fr;
+  }
 }
 
-#portafolio img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+@media (max-width: 820px) {
+  .main-nav ul {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+  }
+
+  .brand-logo-img {
+    width: 140px;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(2),
+  .gallery-item:nth-child(3),
+  .gallery-item:nth-child(4) {
+    grid-column: span 12;
+    min-height: 290px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .hero-parallax {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+  }
 }
-        < !-- FOOTER: Pie de página con derechos de autor -- > <footer > <p > &copy;
-        2026 GemaStudio por Gabriel Millan. Todos los derechos reservados.</p > </footer > < !-- Vinculamos el archivo JavaScript -- > <script src="script.js" > </script > </body > </html >
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.85rem 0;
+  }
+
+  .main-nav ul {
+    display: none;
+  }
+
+  .hero-section {
+    min-height: 92vh;
+    padding-top: 7rem;
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
