@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+
     const enlacesMenu = document.querySelectorAll('nav ul li a[href^="#"]');
     enlacesMenu.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
 
     const imagenesGaleria = document.querySelectorAll('.galeria-trigger');
     let imagenesActuales = []; 
@@ -103,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+
     const accordionHeaders = document.querySelectorAll('.accordion-header');
 
     accordionHeaders.forEach(header => {
@@ -124,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }); 
     });
-
 
     document.querySelectorAll('.open-plan-modal').forEach(boton => {
         boton.addEventListener('click', function(e) {
