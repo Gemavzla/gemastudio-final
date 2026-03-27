@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         imagenModal.style.opacity = '0'; 
         textoCargando.style.display = 'block';
         
-        // Precargar la imagen para que no parpadee
         const imgPreload = new Image();
         imgPreload.src = imagenesActuales[indice];
         
