@@ -1,102 +1,112 @@
-// Esperar a que todo el contenido del DOM esté cargado
 document.addEventListener("DOMContentLoaded", () => {
     
     // 1. FUNCIONALIDAD DE NAVEGACIÓN SUAVE (SMOOTH SCROLLING)
-    // Selecciona todos los enlaces que empiezan con "#"
     const enlacesMenu = document.querySelectorAll('nav ul li a[href^="#"]');
     
     enlacesMenu.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita el salto brusco por defecto
-            
+            e.preventDefault(); 
             const destino = document.querySelector(this.getAttribute('href'));
             
-            // Si el destino existe, haz el scroll suave
             if(destino) {
                 window.scrollTo({
-                    top: destino.offsetTop - 20, // -20px para no pegar la sección al techo
+                    top: destino.offsetTop - 70, // Compensa el tamaño del header
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // 2. SALUDO INTERACTIVO DEPENDIENDO DE LA HORA
-    // Buscamos el párrafo en la sección "Sobre Mí"
-    const seccionSobreMi = document.querySelector('#sobre-mi p');
+    // 2. LIGHTBOX AVANZADO (CARRUSEL)
+    const imagenesGaleria = document.querySelectorAll('.galeria-trigger');
+    let imagenesActuales = []; // Array temporal de las imágenes de la categoría clickeada
+    let indiceActual = 0; // Foto que se está mostrando
     
-    if (seccionSobreMi) {
-        const horaActual = new Date().getHours();
-        let saludo = "Hola";
-        
-        if (horaActual >= 6 && horaActual < 12) {
-            saludo = "Buenos días";
-        } else if (horaActual >= 12 && horaActual < 19) {
-            saludo = "Buenas tardes";
-        } else {
-            saludo = "Buenas noches";
-        }
-        
-        // Reemplazamos el "Hola" original por el saludo dinámico
-        seccionSobreMi.innerHTML = seccionSobreMi.innerHTML.replace("Hola", saludo);
-    }
-
-    // 3. LIGHTBOX PARA LA GALERÍA FOTOGRÁFICA
-    // Seleccionamos todas las imágenes dentro de la sección portafolio
-    const imagenesGaleria = document.querySelectorAll('#portafolio img');
-    
-    // Creamos los elementos del modal (lightbox)
+    // Crear el HTML del modal en tiempo real
     const modal = document.createElement('div');
     modal.classList.add('lightbox-modal');
-    
-    const imagenModal = document.createElement('img');
-    const cerrarModal = document.createElement('span');
-    cerrarModal.classList.add('cerrar-modal');
-    cerrarModal.innerHTML = '&times;'; // Símbolo de X
-    
-    // Armamos el modal
-    modal.appendChild(cerrarModal);
-    modal.appendChild(imagenModal);
+    modal.innerHTML = `
+        <span class="cerrar-modal">&times;</span>
+        <span class="flecha-izq">&#10094;</span>
+        <img class="imagen-modal" src="" alt="Imagen ampliada">
+        <span class="flecha-der">&#10095;</span>
+        <div class="contador-modal">1 / 1</div>
+    `;
     document.body.appendChild(modal);
     
-    // Añadimos evento a cada imagen para abrir el modal
-    imagenesGaleria.forEach(img => {
-        // Cambiamos el cursor para indicar que son clickeables
-        img.style.cursor = 'pointer';
+    const imagenModal = modal.querySelector('.imagen-modal');
+    const btnCerrar = modal.querySelector('.cerrar-modal');
+    const btnIzq = modal.querySelector('.flecha-izq');
+    const btnDer = modal.querySelector('.flecha-der');
+    const contador = modal.querySelector('.contador-modal');
+    
+    // Función para mostrar una imagen específica
+    function mostrarImagen(indice) {
+        imagenModal.style.opacity = '0'; // Efecto fade out
         
-        img.addEventListener('click', () => {
-            imagenModal.src = img.src; // Copiamos la ruta de la imagen clickeada
-            modal.style.display = 'flex'; // Mostramos el modal
+        setTimeout(() => {
+            imagenModal.src = imagenesActuales[indice];
+            contador.textContent = `${indice + 1} / ${imagenesActuales.length}`;
             
-            // Añadimos una pequeña animación
-            setTimeout(() => {
-                modal.style.opacity = '1';
-            }, 10);
+            // Ocultar flechas si solo hay 1 foto
+            if(imagenesActuales.length <= 1) {
+                btnIzq.style.display = 'none';
+                btnDer.style.display = 'none';
+            } else {
+                btnIzq.style.display = 'block';
+                btnDer.style.display = 'block';
+            }
+            
+            imagenModal.style.opacity = '1'; // Efecto fade in
+        }, 150);
+    }
+    
+    // Abrir Modal
+    imagenesGaleria.forEach(img => {
+        img.addEventListener('click', () => {
+            // Obtener el array de imágenes separando por comas
+            const urls = img.getAttribute('data-images');
+            if(urls) {
+                imagenesActuales = urls.split(',');
+                indiceActual = 0; // Empezar por la primera
+                
+                mostrarImagen(indiceActual);
+                modal.style.display = 'flex';
+                setTimeout(() => modal.style.opacity = '1', 10);
+            }
         });
     });
     
-    // Función para cerrar el modal
+    // Navegación
+    btnDer.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evitar que cierre el modal
+        indiceActual = (indiceActual + 1) % imagenesActuales.length;
+        mostrarImagen(indiceActual);
+    });
+    
+    btnIzq.addEventListener('click', (e) => {
+        e.stopPropagation();
+        indiceActual = (indiceActual - 1 + imagenesActuales.length) % imagenesActuales.length;
+        mostrarImagen(indiceActual);
+    });
+    
+    // Cerrar modal
     const cerrarPantalla = () => {
         modal.style.opacity = '0';
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 300); // Espera a que termine la transición para ocultarlo
+        setTimeout(() => modal.style.display = 'none', 300); 
     };
     
-    // Eventos para cerrar (clic en la X o clic fuera de la imagen)
-    cerrarModal.addEventListener('click', cerrarPantalla);
-    
+    btnCerrar.addEventListener('click', cerrarPantalla);
     modal.addEventListener('click', (e) => {
-        // Cierra solo si haces clic en el fondo oscuro, no en la imagen misma
-        if (e.target === modal) {
-            cerrarPantalla();
-        }
+        if (e.target === modal) cerrarPantalla();
     });
 
-    // Cerrar con la tecla Escape
+    // Control con teclado (Flechas y Escape)
     document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape" && modal.style.display === 'flex') {
-            cerrarPantalla();
+        if (modal.style.display === 'flex') {
+            if (e.key === "Escape") cerrarPantalla();
+            if (e.key === "ArrowRight") btnDer.click();
+            if (e.key === "ArrowLeft") btnIzq.click();
         }
     });
 });
