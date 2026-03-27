@@ -124,6 +124,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
             }
+            
+    const planModals = document.querySelectorAll('.plan-modal');
+    const openPlanBtns = document.querySelectorAll('.open-plan-modal');
+    const closePlanBtns = document.querySelectorAll('.close-plan-modal');
+
+    openPlanBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.getAttribute('data-target');
+            const targetModal = document.getElementById(targetId);
+            if (targetModal) {
+                targetModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         });
     });
+
+    closePlanBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.plan-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    planModals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
 });
