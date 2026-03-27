@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let imagenesActuales = []; 
     let indiceActual = 0; 
     
-    const modal = document.createElement('div');
-    modal.classList.add('lightbox-modal');
-    modal.innerHTML = `
+    const modalLightbox = document.createElement('div');
+    modalLightbox.classList.add('lightbox-modal');
+    modalLightbox.innerHTML = `
         <span class="cerrar-modal">&times;</span>
         <span class="flecha-izq">&#10094;</span>
         <img class="imagen-modal" src="" alt="Imagen GemaStudio">
@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="contador-modal">1 / 1</div>
         <div class="cargando">Cargando...</div>
     `;
-    document.body.appendChild(modal);
+    document.body.appendChild(modalLightbox);
     
-    const imagenModal = modal.querySelector('.imagen-modal');
-    const btnCerrar = modal.querySelector('.cerrar-modal');
-    const btnIzq = modal.querySelector('.flecha-izq');
-    const btnDer = modal.querySelector('.flecha-der');
-    const contador = modal.querySelector('.contador-modal');
-    const textoCargando = modal.querySelector('.cargando');
+    const imagenModal = modalLightbox.querySelector('.imagen-modal');
+    const btnCerrarLightbox = modalLightbox.querySelector('.cerrar-modal');
+    const btnIzq = modalLightbox.querySelector('.flecha-izq');
+    const btnDer = modalLightbox.querySelector('.flecha-der');
+    const contador = modalLightbox.querySelector('.contador-modal');
+    const textoCargando = modalLightbox.querySelector('.cargando');
     
     function mostrarImagen(indice) {
         imagenModal.style.opacity = '0'; 
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 imagenesActuales = urls.split(',');
                 indiceActual = 0; 
                 mostrarImagen(indiceActual);
-                modal.style.display = 'flex';
-                setTimeout(() => modal.style.opacity = '1', 10);
+                modalLightbox.style.display = 'flex';
+                setTimeout(() => modalLightbox.style.opacity = '1', 10);
             }
         });
     });
@@ -85,19 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarImagen(indiceActual);
     });
     
-    const cerrarPantalla = () => {
-        modal.style.opacity = '0';
-        setTimeout(() => modal.style.display = 'none', 300); 
+    const cerrarPantallaLightbox = () => {
+        modalLightbox.style.opacity = '0';
+        setTimeout(() => modalLightbox.style.display = 'none', 300); 
     };
     
-    btnCerrar.addEventListener('click', cerrarPantalla);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) cerrarPantalla();
+    btnCerrarLightbox.addEventListener('click', cerrarPantallaLightbox);
+    modalLightbox.addEventListener('click', (e) => {
+        if (e.target === modalLightbox) cerrarPantallaLightbox();
     });
 
     document.addEventListener('keydown', (e) => {
-        if (modal.style.display === 'flex') {
-            if (e.key === "Escape") cerrarPantalla();
+        if (modalLightbox.style.display === 'flex') {
+            if (e.key === "Escape") cerrarPantallaLightbox();
             if (e.key === "ArrowRight") btnDer.click();
             if (e.key === "ArrowLeft") btnIzq.click();
         }
@@ -110,12 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const item = header.parentElement;
             const content = header.nextElementSibling;
             
-
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
                 content.style.maxHeight = null;
             } else {
-
                 document.querySelectorAll('.accordion-item').forEach(otherItem => {
                     otherItem.classList.remove('active');
                     otherItem.querySelector('.accordion-content').style.maxHeight = null;
@@ -124,35 +122,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
             }
-            
-    const planModals = document.querySelectorAll('.plan-modal');
-    const openPlanBtns = document.querySelectorAll('.open-plan-modal');
-    const closePlanBtns = document.querySelectorAll('.close-plan-modal');
+        }); 
+    });
 
-    openPlanBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+
+    document.querySelectorAll('.open-plan-modal').forEach(boton => {
+        boton.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = btn.getAttribute('data-target');
+            e.stopPropagation();
+            
+            const targetId = this.getAttribute('data-target');
             const targetModal = document.getElementById(targetId);
+            
             if (targetModal) {
                 targetModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                targetModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; 
             }
         });
     });
 
-    closePlanBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            btn.closest('.plan-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    });
 
-    planModals.forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
+    document.querySelectorAll('.close-plan-modal').forEach(botonCerrar => {
+        botonCerrar.addEventListener('click', function() {
+            const modalActual = this.closest('.plan-modal');
+            if (modalActual) {
+                modalActual.classList.remove('active');
+                modalActual.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
-            
+        });
+    });
+
+
+    document.querySelectorAll('.plan-modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+
+            if (e.target === this) {
+                this.classList.remove('active');
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
 });
