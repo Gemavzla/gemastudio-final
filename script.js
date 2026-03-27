@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // NAVEGACIÓN SUAVE AL HACER CLIC EN EL MENÚ
     const enlacesMenu = document.querySelectorAll('nav ul li a[href^="#"]');
     enlacesMenu.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
@@ -15,12 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // CARRUSEL LIGHTBOX DE IMÁGENES
     const imagenesGaleria = document.querySelectorAll('.galeria-trigger');
     let imagenesActuales = []; 
     let indiceActual = 0; 
     
-    // Crear el modal en HTML
     const modal = document.createElement('div');
     modal.classList.add('lightbox-modal');
     modal.innerHTML = `
