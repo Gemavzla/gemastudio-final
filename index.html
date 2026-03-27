@@ -191,6 +191,7 @@
       </div>
     </section>
 
+    <!-- PRECIOS -->
     <section id="planes" class="pricing-section">
       <div class="container">
         <div class="section-header text-center">
@@ -198,43 +199,190 @@
           <h2 class="section-title">Planes y <span class="text-highlight">Precios</span></h2>
         </div>
         <div class="pricing-grid">
+          
+          <!-- Básico -->
           <article class="pricing-card">
             <h3>Sesión Básica</h3>
-            <p class="price">$150</p>
+            <p class="price">$50</p>
             <ul class="pricing-features">
               <li>1 Hora de cobertura</li>
-              <li>15 Fotografías editadas</li>
+              <li>20 Fotografías editadas</li>
               <li>1 Locación</li>
               <li>Ideal para redes sociales</li>
             </ul>
-            <a href="#contacto" class="btn-secondary btn-small">Seleccionar</a>
+            <button class="btn-secondary btn-small open-plan-modal" data-target="modal-basico">Ver más</button>
           </article>
+          
+          <!-- Premium -->
           <article class="pricing-card premium-card">
             <div class="popular-badge">Más Solicitado</div>
             <h3>Paquete Premium</h3>
-            <p class="price">$350</p>
+            <p class="price">$150</p>
             <ul class="pricing-features">
               <li>3 Horas de cobertura</li>
-              <li>50 Fotografías editadas pro</li>
+              <li>50 Fotografías editadas</li>
               <li>Múltiples locaciones</li>
-              <li>Iluminación portátil</li>
+              <li>Asesoramiento extra</li>
             </ul>
-            <a href="#contacto" class="btn-primary btn-small">Agendar Premium</a>
+            <button class="btn-primary btn-small open-plan-modal" data-target="modal-premium">Ver más</button>
           </article>
+          
+          <!-- Inmobiliaria -->
           <article class="pricing-card">
-            <h3>Eventos/Bodas</h3>
-            <p class="price">A medida</p>
+            <h3>Inmobiliaria</h3>
+            <p class="price" style="font-size: 2.2rem; margin-top: 1.5rem;">A consultar</p>
             <ul class="pricing-features">
-              <li>Cobertura documental</li>
-              <li>Eventos corporativos</li>
-              <li>Bautizos y Bodas</li>
-              <li>Entrega express</li>
+              <li>Fotos de todos los espacios</li>
+              <li>Video recorrido incluido</li>
+              <li>Asesoramiento del espacio</li>
+              <li>Vuelo de dron opcional</li>
             </ul>
-            <a href="#contacto" class="btn-secondary btn-small">Cotizar Evento</a>
+            <button class="btn-secondary btn-small open-plan-modal" data-target="modal-inmobiliaria">Ver más</button>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- ============================================== -->
+    <!-- MODALES DE LOS PLANES (VENTANAS EMERGENTES)    -->
+    <!-- ============================================== -->
+
+    <!-- Modal Plan Básico -->
+    <div id="modal-basico" class="plan-modal">
+      <div class="plan-modal-content">
+        <span class="close-plan-modal">&times;</span>
+        <h3 class="plan-modal-title">Sesión Básica <span class="text-highlight">- $50</span></h3>
+        
+        <!-- Carrusel en movimiento (Bautizo, Inmob, Boda, Retrato, Paisaje) -->
+        <div class="plan-marquee">
+          <div class="marquee-track">
+             <img src="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/KYT6zyQJ/IMG-2623.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/SspwYttD/IMG-0080.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/0j9RFHYD/IMG-5133.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Paisaje">
+             <img src="https://i.postimg.cc/KzrCPrdV/IMG-1146.jpg" alt="Paisaje">
+             <!-- DUPLICADO PARA EFECTO INFINITO -->
+             <img src="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/KYT6zyQJ/IMG-2623.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/SspwYttD/IMG-0080.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/0j9RFHYD/IMG-5133.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Paisaje">
+             <img src="https://i.postimg.cc/KzrCPrdV/IMG-1146.jpg" alt="Paisaje">
+          </div>
+        </div>
+
+        <div class="plan-details">
+           <h4>¿Qué incluye este paquete?</h4>
+           <p>• 1 Hora de cobertura fotográfica<br>• 20 Fotografías editadas profesionalmente<br>• 1 Locación a elección<br>• Ideal para contenido de redes sociales.</p>
+           
+           <h4>Términos y Condiciones Generales</h4>
+           <div class="terms-text">
+               <p><strong>Entregas:</strong> Plazo de 1 a 3 días mediante galería web privada (visualización y descarga). No se entregan fotografías sin editar ni archivos crudos.</p>
+               <p><strong>Pagos:</strong> Anticipo del 50% para agendar, 50% restante al entregar. Calculado según la moneda de mayor valor (BCV del día). Las horas o fotos extras se cobran por separado. No hay reembolsos por cancelación del cliente.</p>
+               <p><strong>Derechos:</strong> Puedes usar el material en RRSS o impresiones. Prohibido su uso comercial por terceros sin mención. GemaStudio podrá usarlo en su portafolio publicitario (con respeto y previo consentimiento). Prohibido su uso para publicidad externa sin autorización del fotógrafo.</p>
+               <p><strong>Seguridad:</strong> Para proteger el equipo, no se realiza cobertura si hay láseres activos apuntando a las cámaras.</p>
+           </div>
+           <a href="https://wa.link/k7jcbt" target="_blank" class="btn-primary mt-4" style="width: 100%;">Agendar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Plan Premium -->
+    <div id="modal-premium" class="plan-modal">
+      <div class="plan-modal-content">
+        <span class="close-plan-modal">&times;</span>
+        <h3 class="plan-modal-title">Paquete Premium <span class="text-highlight">- $150</span></h3>
+        
+        <div class="plan-marquee">
+          <div class="marquee-track">
+             <img src="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/KYT6zyQJ/IMG-2623.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/SspwYttD/IMG-0080.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/0j9RFHYD/IMG-5133.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Paisaje">
+             <img src="https://i.postimg.cc/KzrCPrdV/IMG-1146.jpg" alt="Paisaje">
+             <!-- DUPLICADO -->
+             <img src="https://i.postimg.cc/g0hCJP4j/IMG-2596.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/KYT6zyQJ/IMG-2623.jpg" alt="Bautizo">
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/NMwW2PPR/IMG-0045.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/SspwYttD/IMG-0080.jpg" alt="Boda">
+             <img src="https://i.postimg.cc/ryR8rvmW/IMG-5139.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/0j9RFHYD/IMG-5133.jpg" alt="Retrato">
+             <img src="https://i.postimg.cc/P5Ws4Hs7/IMG-3317.jpg" alt="Paisaje">
+             <img src="https://i.postimg.cc/KzrCPrdV/IMG-1146.jpg" alt="Paisaje">
+          </div>
+        </div>
+
+        <div class="plan-details">
+           <h4>¿Qué incluye este paquete?</h4>
+           <p>• 3 Horas de cobertura fotográfica<br>• 50 Fotografías editadas<br>• Múltiples locaciones a coordinar<br>• Asesoramiento profesional y dirección visual.</p>
+           
+           <h4>Términos y Condiciones Generales</h4>
+           <div class="terms-text">
+               <p><strong>Entregas:</strong> Plazo de 1 a 3 días mediante galería web privada (visualización y descarga). No se entregan fotografías sin editar ni archivos crudos.</p>
+               <p><strong>Pagos:</strong> Anticipo del 50% para agendar, 50% restante al entregar. Calculado según la moneda de mayor valor (BCV del día). Las horas o fotos extras se cobran por separado. No hay reembolsos por cancelación del cliente.</p>
+               <p><strong>Derechos:</strong> Puedes usar el material en RRSS o impresiones. Prohibido su uso comercial por terceros sin mención. GemaStudio podrá usarlo en su portafolio publicitario (con respeto y previo consentimiento). Prohibido su uso para publicidad externa sin autorización del fotógrafo.</p>
+               <p><strong>Seguridad:</strong> Para proteger el equipo, no se realiza cobertura si hay láseres activos apuntando a las cámaras.</p>
+           </div>
+           <a href="https://wa.link/k7jcbt" target="_blank" class="btn-primary mt-4" style="width: 100%;">Agendar Premium por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Inmobiliaria -->
+    <div id="modal-inmobiliaria" class="plan-modal">
+      <div class="plan-modal-content">
+        <span class="close-plan-modal">&times;</span>
+        <h3 class="plan-modal-title">Sesión Inmobiliaria <span class="text-highlight">- A Consultar</span></h3>
+        
+        <!-- Carrusel SOLO Inmobiliario -->
+        <div class="plan-marquee">
+          <div class="marquee-track">
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/76fT7mGf/IMG-6231-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/rmKtWQ0r/IMG-6273-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/3RdDpn4X/IMG-6305-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/8cvJXcbv/IMG-6279-HDR.jpg" alt="Inmobiliaria">
+             <!-- DUPLICADO -->
+             <img src="https://i.postimg.cc/nLn8SWp6/IMG-6276-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/pd0FpgT5/IMG-6294-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/76fT7mGf/IMG-6231-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/rmKtWQ0r/IMG-6273-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/3RdDpn4X/IMG-6305-HDR.jpg" alt="Inmobiliaria">
+             <img src="https://i.postimg.cc/8cvJXcbv/IMG-6279-HDR.jpg" alt="Inmobiliaria">
+          </div>
+        </div>
+
+        <div class="plan-details">
+           <h4>¿Qué incluye este servicio?</h4>
+           <p>• Cobertura para Apartamento, Casa o Terreno<br>• Fotos amplias y detalladas de todos los espacios<br>• Video recorrido de la propiedad<br>• 20 fotos o más editadas (dependiendo del tamaño)<br>• Asesoramiento experto para preparar el espacio<br>• Vuelo de dron (bajo solicitud adicional).</p>
+           
+           <h4>Términos y Condiciones Generales</h4>
+           <div class="terms-text">
+               <p><strong>Entregas:</strong> Plazo de 1 a 3 días mediante galería web privada (visualización y descarga). No se entregan fotografías sin editar ni archivos crudos.</p>
+               <p><strong>Pagos:</strong> Anticipo del 50% para agendar, 50% restante al entregar. Calculado según la moneda de mayor valor (BCV del día). Las horas o fotos extras se cobran por separado. No hay reembolsos por cancelación del cliente.</p>
+               <p><strong>Derechos:</strong> Puedes usar el material en RRSS o impresiones. Prohibido su uso comercial por terceros sin mención. GemaStudio podrá usarlo en su portafolio publicitario (con respeto y previo consentimiento). Prohibido su uso para publicidad externa sin autorización del fotógrafo.</p>
+           </div>
+           <a href="https://wa.link/k7jcbt" target="_blank" class="btn-primary mt-4" style="width: 100%;">Cotizar propiedad por WhatsApp</a>
+        </div>
+      </div>
+    </div>
 
      <section id="contacto" class="contact-section">
       <div class="container">
